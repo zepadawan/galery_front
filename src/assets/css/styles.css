@@ -6280,7 +6280,7 @@ select.form-control {
     font-size: 14px;
     color: #1d1d1d;
     padding-top: 0.625rem;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 .contact-form .form-control {
@@ -6917,7 +6917,7 @@ ul.amount li {
     font-size: 14px;
     color: #1d1d1d;
     padding-top: 0.625rem;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 .personal-information .form-group .form-control {

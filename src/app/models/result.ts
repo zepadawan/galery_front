@@ -1,8 +1,9 @@
 
 export interface Result {
-  status: number;
-  message: string;
+  status: number,
+  message: string,
   result,
-  time: string;
-  args: any;
+  time: string,
+  args: any,
+  token: string,
 }

@@ -5,12 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShopComponent } from './components/shop/shop.component';
-import { AddTableauComponent } from './components/shop/add-tableau/add-tableau.component';
-import { EditTableauComponent } from './components/shop/edit-tableau/edit-tableau.component';
 import { SingleTableauComponent } from './components/shop/single-tableau/single-tableau.component';
 import { CartComponent } from './components/shop/cart/cart.component';
-import { SigninComponent } from './components/auth/signin/signin.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
 import { FooterComponent } from './components/gui/footer/footer.component';
 import { HeaderComponent } from './components/gui/header/header.component';
 import { HeaderPageComponent } from './components/gui/header-page/header-page.component';
@@ -19,24 +15,30 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TableauxComponent } from './components/shop/tableaux/tableaux.component';
 import { HomeComponent } from './components/gui/home/home.component';
 import { GuiComponent } from './components/gui/gui.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { ModalAddToCartComponent } from './components/shop/modal-add-to-cart/modal-add-to-cart.component';
+import { ModalQuickViewComponent } from './components/shop/modal-quick-view/modal-quick-view.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShopComponent,
-    AddTableauComponent,
-    EditTableauComponent,
     SingleTableauComponent,
     CartComponent,
-    SigninComponent,
-    SignupComponent,
     FooterComponent,
     HeaderComponent,
     HeaderPageComponent,
     NotFoundComponent,
     TableauxComponent,
     HomeComponent,
-    GuiComponent
+    GuiComponent,
+    LoginComponent,
+    RegisterComponent,
+    ModalAddToCartComponent,
+    ModalQuickViewComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

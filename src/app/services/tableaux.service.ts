@@ -13,18 +13,18 @@ export class TableauxService {
 
 
   tableaux: Tableau[] = [];
-  productSubject = new Subject<any[]>();
+  tableauSubject = new Subject<any[]>();
 
   constructor(private http: HttpClient) {
     this.getTableauxFromServer();
   }
 
   emitTableaux() {
-    this.productSubject.next(this.tableaux);
+    this.tableauSubject.next(this.tableaux);
   }
 
-  getTableauxFromServer() {
-    const url = `${environment.api + 'tableaux/'}`;
+  getTableauxFromServer(): any {
+    const url = `${environment.api + '/oeuvres/get'}`;
     console.log(url);
     return this.http.get<any>(url).subscribe(
       (data: Result) => {
@@ -37,6 +37,26 @@ export class TableauxService {
       }
     )
   }
+  getTableauById(id: number): Tableau {
+    const tableau = this.tableaux.find(element => element.id == id);
+    if (tableau) {
+      return tableau;
+    }
+    return null;
+  }
+
+  // Afficahege par pages => Pagination
+  // getProductbyPage(numberPage: number): Product[]{
+
+  //   this.nomberOfPage = Math.trunc(this.products.length/this.numberOfProductByPage);
+  //   if(numberPage > 0 || numberPage <= (this.nomberOfPage)){
+  //     const prodResult = this.products.slice(numberPage*this.numberOfProductByPage, (numberPage+1)*this.numberOfProductByPage);
+  //     return prodResult;
+  //   }
+  //   return null;
+
+  // }
+
 
 
 }
