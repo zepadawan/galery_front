@@ -1,3 +1,5 @@
+import { EditTableauComponent } from './admin/tableaux/edit-tableau/edit-tableau.component';
+import { HeaderAdminComponent } from './components/gui/header-admin/header-admin.component';
 import { AdminTableauxComponent } from './admin/tableaux/admin-tableaux/admin-tableaux.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,6 +32,7 @@ import { AdminComponent } from './admin/admin.component';
     CartComponent,
     FooterComponent,
     HeaderComponent,
+    HeaderAdminComponent,
     NotFoundComponent,
     TableauxComponent,
     CategoryComponent,
@@ -40,7 +43,8 @@ import { AdminComponent } from './admin/admin.component';
     ModalAddToCartComponent,
     ModalQuickViewComponent,
     AdminComponent,
-    AdminTableauxComponent
+    AdminTableauxComponent,
+    EditTableauComponent
 
   ],
   imports: [
