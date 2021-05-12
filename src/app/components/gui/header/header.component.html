@@ -120,10 +120,10 @@
                     <ul class="main-menu d-flex">
                         <li routerLinkActive="active"><a routerLink="/home">Accueil</a></li>
                         <li routerLinkActive="active"><a routerLink="">Catalogue</a></li>
-                        <li routerLinkActive="active"><a>Category</a>
+                        <li routerLinkActive="active"><a class="pointer">Category</a>
                             <ul class="sub-menu">
-                                <li *ngFor="let cat of   categories">
-                                    <a [routerLink]="['/category', cat.idCategory]">{{cat.name}}</a>
+                                <li *ngFor="let cat of categories">
+                                    <a [routerLink]="['/category', cat.id]">{{cat.libelle}}</a>
                                 </li>
                             </ul>
                         </li>
@@ -131,9 +131,16 @@
                         <li routerLinkActive="active" *ngIf="!isAuth"><a routerLink="/login">Connexion</a></li>
                         <li routerLinkActive="active" *ngIf="!isAuth"><a routerLink="/register">Inscription</a></li>
                         <li (click)="onLogOut()" *ngIf="isAuth"><a class="btn">Déconnecter</a></li>
-                        <li *ngIf="isAuth && isAdmin"><a class="btn">Administration</a></li>
+                        <!-- <li *ngIf="isAuth && isAdmin"><a class="btn">Administration</a></li> -->
+                        <li routerLinkActive="active"><a routerLink="/administration">Administration</a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a routerLink="/gestion_tableaux">Tableaux</a>
+                                </li>
+                                <li>Catégories de tableaux</li>
+                            </ul>
+                        </li>
                     </ul>
-
                 </div>
             </div>
         </div>

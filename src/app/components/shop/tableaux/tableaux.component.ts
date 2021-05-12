@@ -14,7 +14,7 @@ export class TableauxComponent implements OnInit, OnDestroy {
 
   @Input() tableaux = [];
   @Input() ispaginate: boolean = true;
-  // @Input() isByCategories: boolean = false;
+  @Input() isByCategories: boolean = false;
 
   prefixUrlImage = environment.api_image;
   tableauSubscription: Subscription;

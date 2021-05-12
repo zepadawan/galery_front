@@ -57,11 +57,7 @@ export class AuthService {
           reject(err);
         }
       )
+    });
+  };
 
-
-    };
-
-
-
-
-  }
+}

@@ -24,11 +24,9 @@ export class TableauxService {
   }
 
   getTableauxFromServer(): any {
-    const url = `${environment.api + '/oeuvres/get'}`;
-    console.log(url);
+    const url = `${environment.api + 'oeuvres/get'}`;
     return this.http.get<any>(url).subscribe(
       (data: Result) => {
-        console.log(data);
         this.tableaux = data.args;
         this.emitTableaux();
       },

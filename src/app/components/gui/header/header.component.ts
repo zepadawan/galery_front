@@ -1,6 +1,9 @@
+import { CategoryService } from './../../../services/category.service';
+import { Result } from './../../../models/result';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Cart } from 'src/app/models/cart';
+import { Category } from 'src/app/models/category';
 import { Texte } from 'src/app/models/texte';
 import { User } from 'src/app/models/user.model';
 import { CartService } from 'src/app/services/cart.service';
@@ -17,8 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   carts: Cart[] = [];
   cartData: any;
-  //  categories: Category[];
-  categories: any;
+  categories: Category[];
   categorySubcription: Subscription;
   cartSubsription: Subscription;
   userSubsription: Subscription;
@@ -30,27 +32,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
   constructor(private cartService: CartService,
-    private usersService: UsersService) { }
+    private usersService: UsersService,
+    private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.carts = this.cartService.carts;
     this.cartData = this.cartService.cartData;
-    // this.categorySubcription = this.categoryService.categorySubject.subscribe(
-    //   (data: Category[]) => {
-    //     this.categories = data;
-    //   });
-    //this.categoryService.emitCategories();
+    this.categories = this.categoryService.categories;
+    console.log(this.categories);
     this.isAuth = this.usersService.isAuth;
     this.user = this.usersService.user;
-    console.log(this.user);
     if (this.user) {
       this.isAdmin = ((this.user?.role == 'admin') || (this.user?.role == 'superadmin')) ? true : false;
     }
-
   }
 
   ngOnDestroy(): void {
-    //this.categorySubcription.unsubscribe();
   }
 
   getTexte(id: number): string {

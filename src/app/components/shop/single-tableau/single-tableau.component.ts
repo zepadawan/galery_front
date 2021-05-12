@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CategoryService } from './../../../services/category.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Tableau } from 'src/app/models/tableau';
@@ -14,11 +15,13 @@ import { environment } from 'src/environments/environment';
 export class SingleTableauComponent implements OnInit {
 
   tableau: Tableau;
+  categorie: string;
   prefUrlImage = `${environment.api_image}`;
   tableauSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
     private tableauxService: TableauxService,
+    private categoryService: CategoryService,
     private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -30,6 +33,8 @@ export class SingleTableauComponent implements OnInit {
       }
     );
     this.tableauxService.emitTableaux();
+    this.categorie = this.categoryService.getCategoryNameById(this.tableau.id_category)
+
   }
 
   ngOnDestroy() {

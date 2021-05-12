@@ -1,7 +1,7 @@
 export interface Tableau {
   id: number,
   nom: string,
-  category: string,
+  id_category: number,
   nom_image: string,
   prix: string,
   description: string,

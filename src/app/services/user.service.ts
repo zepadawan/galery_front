@@ -25,7 +25,7 @@ export class UsersService {
   }
 
   authentifier(newUser: User) {
-    const url = `${environment.api}` + '/users/login';
+    const url = `${environment.api}` + 'users/login';
     const body = {
       "email": newUser.email,
       "password": newUser.password
@@ -61,7 +61,7 @@ export class UsersService {
     return new Promise(
       (resolve, reject) => {
 
-        const url = `${environment.api}` + '/users/register'
+        const url = `${environment.api}` + 'users/register'
         const body = {
           "firstname": newUser.firstname,
           "lastname": newUser.lastname,
@@ -89,6 +89,14 @@ export class UsersService {
         )
       }
     )
+  }
+
+
+  getParams() {
+    const params = {
+      isAuth: this.isAuth,
+    }
+    return params;
   }
 
   logOut(): void {
