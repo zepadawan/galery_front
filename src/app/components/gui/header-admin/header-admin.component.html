@@ -1,3 +1,4 @@
+<node-header></node-header>
 <nav class="breadcrumb-section theme1 bg-lighten2 pt-50 pb-50">
     <div class="container">
         <div class="row">
@@ -9,9 +10,9 @@
             <div class="col-12">
                 <ol class="breadcrumb bg-transparent m-0 p-0 align-items-center justify-content-center">
                     <li class="breadcrumb-item">
-                        <a routerLink="/">Admin</a>
+                        <a routerLink="/administration">{{parentPage}}</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{currentpage}}</li>
+                    <li class="breadcrumb-item active" aria-current="page" *ngIf="currentPage">{{currentPage}}</li>
                 </ol>
             </div>
         </div>

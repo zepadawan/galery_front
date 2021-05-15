@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.carts = this.cartService.carts;
     this.cartData = this.cartService.cartData;
     this.categories = this.categoryService.categories;
-    console.log(this.categories);
+
     this.isAuth = this.usersService.isAuth;
     this.user = this.usersService.user;
     if (this.user) {

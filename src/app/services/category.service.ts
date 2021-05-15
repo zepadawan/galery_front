@@ -12,6 +12,7 @@ export class CategoryService {
 
   categories: Category[];
   categorySubject = new Subject<Category[]>();
+  categorie: Category;
 
   constructor(private http: HttpClient) {
     this.getCategoriesFromServer();
@@ -26,10 +27,9 @@ export class CategoryService {
     console.log(url);
 
     return this.http.get<any>(url).subscribe(
-      (dataCategories: Result) => {
-        console.log(dataCategories);
-        if (dataCategories.status == 200) {
-          this.categories = dataCategories.args;
+      (data: Result) => {
+        if (data.status == 200) {
+          this.categories = data.args;
         }
         this.emitCategories();
       },
@@ -39,10 +39,29 @@ export class CategoryService {
     )
   };
 
-  getCategoryNameById(id: number): string {
-    const libelle = this.categories[id - 1].libelle;
-    return libelle;
-  }
+  getCategoryNameById(id: number) {
+    const url = `${environment.api + 'categories/' + id}`;
+    console.log(url);
+    return new Promise((resolve, reject) => {
+      this.http.get(url).subscribe(
+        (data: Result) => {
+          if (data.status == 200) {
+            this.categorie = data.args;
+            resolve(data.args);
+          } else {
+            reject(data.message);
+          }
+        },
+        (err) => {
+          console.log(err);
+
+        }
+      )
+    })
+
+  };
+
+
 
 
 }

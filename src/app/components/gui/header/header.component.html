@@ -131,13 +131,21 @@
                         <li routerLinkActive="active" *ngIf="!isAuth"><a routerLink="/login">Connexion</a></li>
                         <li routerLinkActive="active" *ngIf="!isAuth"><a routerLink="/register">Inscription</a></li>
                         <li (click)="onLogOut()" *ngIf="isAuth"><a class="btn">Déconnecter</a></li>
-                        <!-- <li *ngIf="isAuth && isAdmin"><a class="btn">Administration</a></li> -->
+                        <!-- <li routerLinkActive="active" *ngIf="isAuth"><a routerLink="/administration">Administration</a> -->
                         <li routerLinkActive="active"><a routerLink="/administration">Administration</a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a routerLink="/gestion_tableaux">Tableaux</a>
+                                    <a routerLink="/admin_tableaux">Tableau : Ajouter</a>
                                 </li>
-                                <li>Catégories de tableaux</li>
+                                <li>
+                                    <a routerLink="">Tableau : Editer/Supprimer</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/admin_categories">Categorie : Ajouter</a>
+                                </li>
+                                <li>
+                                    <a routerLink="">Categorie : Editer/Supprimer</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

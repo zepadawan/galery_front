@@ -1,3 +1,4 @@
+import { AdminCategoriesComponent } from './admin/categories/admin-categories/admin-categories.component';
 import { CategoryComponent } from './components/shop/category/category.component';
 import { AdminTableauxComponent } from './admin/tableaux/admin-tableaux/admin-tableaux.component';
 import { NgModule } from '@angular/core';
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'category/:id', component: CategoryComponent },
   { path: 'single-tableau/:id', component: SingleTableauComponent },
   { path: 'administration', component: AdminComponent },
-  { path: 'gestion_tableaux', component: AdminTableauxComponent },
+  { path: 'admin_tableaux', component: AdminTableauxComponent },
+  { path: 'admin_categories', component: AdminCategoriesComponent },
   { path: 'cart', component: CartComponent },
   { path: 'notfound', component: NotFoundComponent },
   { path: 'admin', component: AdminComponent },

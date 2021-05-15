@@ -13,7 +13,7 @@ export class UsersService {
   user: User;
   isAuth = false;
   userSubject = new Subject<User>();
-  userId: string;
+  userId: number;
   token = "";
   _isAuth$ = new BehaviorSubject<boolean>(false);
 
@@ -38,6 +38,7 @@ export class UsersService {
               console.log(data);
               this.user = data.args;
               this.isAuth = true;
+              this.userId = this.user.id;
               this._isAuth$.next(true);
               this.token = data.token
               console.log('token :' + this.token);

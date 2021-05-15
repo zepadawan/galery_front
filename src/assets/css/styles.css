@@ -3308,7 +3308,7 @@ breadcrumb-section
 }
 
 .breadcrumb-item {
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     line-height: 1;
     padding: 0px !important;
 }

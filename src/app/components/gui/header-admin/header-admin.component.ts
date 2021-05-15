@@ -8,13 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderAdminComponent implements OnInit {
 
   @Input() page: string;
-  @Input() currentpage: string;
+  @Input() currentPage: string;
+  @Input() parentPage: string;
 
   constructor() { }
 
   ngOnInit(): void {
-
-    this.page = "Page d'administration";
+    this.page = "Pages d'administration";
   }
 
 }

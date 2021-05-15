@@ -1,11 +1,13 @@
+import { Category } from './../../../models/category';
+import { Result } from './../../../models/result';
 import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { Tableau } from 'src/app/models/tableau';
 import { CartService } from 'src/app/services/cart.service';
 import { TableauxService } from 'src/app/services/tableaux.service';
 import { environment } from 'src/environments/environment';
+import { nextTick } from 'process';
 
 @Component({
   selector: 'node-single-tableau',
@@ -15,9 +17,9 @@ import { environment } from 'src/environments/environment';
 export class SingleTableauComponent implements OnInit {
 
   tableau: Tableau;
+  idCategorie: number;
   categorie: string;
   prefUrlImage = `${environment.api_image}`;
-  tableauSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
     private tableauxService: TableauxService,
@@ -27,18 +29,31 @@ export class SingleTableauComponent implements OnInit {
   ngOnInit(): void {
     window.scrollTo(0, 0);
     const id = this.route.snapshot.params['id'];
-    this.tableauSubscription = this.tableauxService.tableauSubject.subscribe(
-      (data: Tableau[]) => {
-        this.tableau = this.tableauxService.getTableauById(id);
-      }
-    );
-    this.tableauxService.emitTableaux();
-    this.categorie = this.categoryService.getCategoryNameById(this.tableau.id_category)
+    this.tableauxService.getTableauById(id)
+      .then((data: Result) => {
+        this.tableau = data.args;
+        this.idCategorie = this.tableau.id_category;
+        this.getCategorieName(this.idCategorie);
+      })
+      .catch((data: Result) => {
+        console.log(data.message);
+      });
+
+  }
+
+  getCategorieName(id: number) {
+    this.categoryService.getCategoryNameById(id)
+      .then((data: Category) => {
+        this.categorie = data.libelle;
+      })
+      .catch()
+
+
+
 
   }
 
   ngOnDestroy() {
-    this.tableauSubscription.unsubscribe();
   }
 
   onAddToCart(tableau: Tableau): void {
