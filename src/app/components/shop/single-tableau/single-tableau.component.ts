@@ -7,7 +7,6 @@ import { Tableau } from 'src/app/models/tableau';
 import { CartService } from 'src/app/services/cart.service';
 import { TableauxService } from 'src/app/services/tableaux.service';
 import { environment } from 'src/environments/environment';
-import { nextTick } from 'process';
 
 @Component({
   selector: 'node-single-tableau',

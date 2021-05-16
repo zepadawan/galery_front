@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditTableauComponent } from './admin/tableaux/edit-tableau/edit-tableau.component';
 import { HeaderAdminComponent } from './components/gui/header-admin/header-admin.component';
-import { AdminTableauxComponent } from './admin/tableaux/admin-tableaux/admin-tableaux.component';
+import { AdminTableauxComponent } from './admin/tableaux/creation-tableau/creation-tableau.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,7 +24,7 @@ import { ModalAddToCartComponent } from './components/shop/modal-add-to-cart/mod
 import { ModalQuickViewComponent } from './components/shop/modal-quick-view/modal-quick-view.component';
 import { CategoryComponent } from './components/shop/category/category.component';
 import { AdminComponent } from './admin/admin.component';
-import { AdminCategoriesComponent } from './admin/categories/admin-categories/admin-categories.component';
+import { AdminCategoriesComponent } from './admin/categories/creation-categorie/creation-categorie.component';
 import { EditCategorieComponent } from './admin/categories/edit-categorie/edit-categorie.component';
 
 @NgModule({

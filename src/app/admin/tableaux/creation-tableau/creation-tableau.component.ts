@@ -8,8 +8,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'node-admin-tableaux',
-  templateUrl: './admin-tableaux.component.html',
-  styleUrls: ['./admin-tableaux.component.css']
+  templateUrl: './creation-tableau.component.html',
+  styleUrls: ['./creation-tableau.component.css']
 })
 export class AdminTableauxComponent implements OnInit, OnDestroy {
 

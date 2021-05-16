@@ -1,6 +1,6 @@
-import { AdminCategoriesComponent } from './admin/categories/admin-categories/admin-categories.component';
+import { AdminCategoriesComponent } from './admin/categories/creation-categorie/creation-categorie.component';
 import { CategoryComponent } from './components/shop/category/category.component';
-import { AdminTableauxComponent } from './admin/tableaux/admin-tableaux/admin-tableaux.component';
+import { AdminTableauxComponent } from './admin/tableaux/creation-tableau/creation-tableau.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';

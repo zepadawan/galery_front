@@ -5,8 +5,8 @@ import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'node-admin-categories',
-  templateUrl: './admin-categories.component.html',
-  styleUrls: ['./admin-categories.component.css']
+  templateUrl: './creation-categorie.component.html',
+  styleUrls: ['./creation-categorie.component.css']
 })
 export class AdminCategoriesComponent implements OnInit, OnDestroy {
 

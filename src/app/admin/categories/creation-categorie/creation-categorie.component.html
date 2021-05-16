@@ -1,0 +1,17 @@
+<node-header-admin [parentPage]="parentPage" [currentPage]="currentpage"></node-header-admin>
+<div class="col-sm-6 offset-sm-3 mt-2">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr style="width:200px">
+                <th style="width:50px" scope="col">Numéro</th>
+                <th style="width:100px" scope="col">Libellé</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let categ of categories">
+                <th scope="row"> {{categ.id}}</th>
+                <td>{{categ.libelle}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
