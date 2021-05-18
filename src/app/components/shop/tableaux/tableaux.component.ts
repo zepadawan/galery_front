@@ -1,3 +1,5 @@
+import { UsersService } from './../../../services/user.service';
+import { User } from './../../../models/user.model';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Tableau } from 'src/app/models/tableau';
@@ -15,6 +17,7 @@ export class TableauxComponent implements OnInit, OnDestroy {
   @Input() tableaux = [];
   @Input() ispaginate: boolean = true;
   @Input() isByCategories: boolean = false;
+  @Input() isAdmin: boolean;
 
   prefixUrlImage = environment.api_image;
   tableauSubscription: Subscription;
@@ -23,6 +26,7 @@ export class TableauxComponent implements OnInit, OnDestroy {
   pages = [0, 1, 2, 3, 4, 5, 6, 7];
 
   constructor(private tableauService: TableauxService,
+    private usersService: UsersService,
     private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -33,6 +37,10 @@ export class TableauxComponent implements OnInit, OnDestroy {
       }
     );
     this.tableauService.emitTableaux();
+    const role = this.usersService.role;
+    if (role) {
+      this.isAdmin = ((role == 'admin') || (role == 'superadmin')) ? true : false;
+    }
   }
   ngOnDestroy(): void {
     this.tableauSubscription.unsubscribe();
@@ -47,28 +55,29 @@ export class TableauxComponent implements OnInit, OnDestroy {
   }
 
   changePage(numberPage: number): void {
-    //   const prod = this.productService.getProductbyPage(numberPage);
-    //   if (prod) {
-    //     this.products = prod;
-    //     this.currentPage = numberPage;
-    //   };
+    const tableaux = this.tableauService.getProductbyPage(numberPage);
+    if (tableaux) {
+      this.tableaux = tableaux;
+      this.currentPage = numberPage;
+    };
   }
 
   nextPage(): void {
-    // const newCurrentPage = this.currentPage + 1;
-    // const prod = this.productService.getProductbyPage(newCurrentPage);
-    // if (prod) {
-    //   this.products = prod;
-    //   this.currentPage = newCurrentPage;
-    // }
+    const newCurrentPage = this.currentPage + 1;
+    const tableaux = this.tableauService.getProductbyPage(newCurrentPage);
+    if (tableaux) {
+      this.tableaux = tableaux;
+      this.currentPage = newCurrentPage;
+    }
   };
 
   prevPage(): void {
-    //   const newCurrentPage = this.currentPage - 1;
-    //   const prod = this.productService.getProductbyPage(newCurrentPage);
-    //   if (prod) {
-    //     this.products = prod;
-    //     this.currentPage = newCurrentPage;
-    //   }
+    const newCurrentPage = this.currentPage - 1;
+    const tableaux = this.tableauService.getProductbyPage(newCurrentPage);
+    if (tableaux) {
+      this.tableaux = tableaux;
+      this.currentPage = newCurrentPage;
+    }
   }
+
 }

@@ -77,7 +77,7 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.loading = false;
+    this.loading = true;
     const tableau = new Tableau();
     tableau.nom = this.tableauForm.get('name').value;
     tableau.description = this.tableauForm.get('description').value;
@@ -91,8 +91,10 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
         setTimeout(
           () => {
             this.successMessage = null;
-            //            this.router.navigate(['/administration']);
           }, 3000);
+        this.tableauForm.reset();
+        this.router.navigate(['/shop']);
+        this.loading = false;
 
       })
       .catch();

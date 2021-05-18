@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @Input() isAuth = false;
   @Input() user: User;
-
   @Input() isAdmin = false;
 
 

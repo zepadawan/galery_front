@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 })
 export class CategoryService {
 
-  categories: Category[];
+  categories: Category[] = [];
   categorySubject = new Subject<Category[]>();
   categorie: Category;
 
@@ -24,19 +24,19 @@ export class CategoryService {
 
   getCategoriesFromServer() {
     const url = `${environment.api}` + 'categories';
-    console.log(url);
-
-    return this.http.get<any>(url).subscribe(
-      (data: Result) => {
-        if (data.status == 200) {
-          this.categories = data.args;
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(url).subscribe(
+        (data: Result) => {
+          if (data.status == 200) {
+            this.categories = data.args;
+          }
+          this.emitCategories();
+        },
+        (err) => {
+          console.log(err);
         }
-        this.emitCategories();
-      },
-      (err) => {
-        console.log(err);
-      }
-    )
+      )
+    })
   };
 
   getCategoryNameById(id: number) {

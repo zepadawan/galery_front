@@ -5,6 +5,7 @@
     <input type='submit' value='Upload!' />
 </form>
  -->
+
 <div *ngIf="!loading" class="col-sm-6 offset-sm-3 mt-2">
 
     <div class="row">
@@ -31,8 +32,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="price">prix (en €)</label>
-                    <input type="number" placeholder="par ex: 500,00" id="price" class="form-control" formControlName="price" min="5">
+                    <label for="prix">prix (en €)</label>
+                    <input type="text" placeholder="par ex: 500,00" id="prix" class="form-control" formControlName="prix" min="5">
                 </div>
 
                 <div class="form-group">
@@ -47,7 +48,12 @@
 
                 <div class="form-group">
                     <label for="title">Categorie</label>
-                    <input type="text" placeholder="catégorie du tableau" id="categorie" formControlName="categorie" class="form-control">
+                    <select class="select" size="1" aria-label="size 3 select example" formControlName="categorie" class="form-control">
+                      <option selected >Choisir ...</option>
+                      <option *ngFor="let categ of categories" value="{{categ.id}}">
+                        {{categ.libelle}}
+                      </option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -56,8 +62,9 @@
                 </div>
 
                 <!-- (click)="onSubmit()" -->
-                <button type="button" (click)="onSubmit()" class="btn theme-btn--dark1 btn--md m-2" [disabled]="tableauForm.invalid">Ajouter le tableau</button>
-
+                <button type="button" (click)="onSubmit()" class="btn theme-btn--dark1 btn--md m-2" [disabled]="tableauForm.invalid">Enregister</button>
+                <button type="button" (click)="onAnnul()" class="btn theme-btn--dark1 btn--md m-2">Annuler</button>
             </form>
+
         </div>
     </div>

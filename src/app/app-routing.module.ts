@@ -1,3 +1,5 @@
+import { AuthGuard } from './services/auth.guard';
+import { EditTableauComponent } from './admin/tableaux/edit-tableau/edit-tableau.component';
 import { AdminCategoriesComponent } from './admin/categories/creation-categorie/creation-categorie.component';
 import { CategoryComponent } from './components/shop/category/category.component';
 import { AdminTableauxComponent } from './admin/tableaux/creation-tableau/creation-tableau.component';
@@ -16,14 +18,17 @@ import { TableauxComponent } from './components/shop/tableaux/tableaux.component
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent, },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent, },
   { path: 'shop', component: ShopComponent },
   { path: 'tableaux', component: TableauxComponent },
   { path: 'category/:id', component: CategoryComponent },
   { path: 'single-tableau/:id', component: SingleTableauComponent },
-  { path: 'administration', component: AdminComponent },
-  { path: 'admin_tableaux', component: AdminTableauxComponent },
-  { path: 'admin_categories', component: AdminCategoriesComponent },
+  // Administration
+  { path: 'administration', component: AdminComponent, canActivate: [AuthGuard] },
+  { path: 'admin_tableaux', component: AdminTableauxComponent, canActivate: [AuthGuard] },
+  { path: 'edit-tableaux/:id', component: EditTableauComponent, canActivate: [AuthGuard] },
+  { path: 'admin_categories', component: AdminCategoriesComponent, canActivate: [AuthGuard] },
+  // Paiement
   { path: 'cart', component: CartComponent },
   { path: 'notfound', component: NotFoundComponent },
   { path: 'admin', component: AdminComponent },

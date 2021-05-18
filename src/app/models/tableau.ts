@@ -3,7 +3,7 @@ export class Tableau {
   nom?: string;
   id_category?: number;
   nom_image?: string;
-  prix?: string;
+  prix: string;
   description?: string;;
   dimension?: string;
   annee_creation?: string;

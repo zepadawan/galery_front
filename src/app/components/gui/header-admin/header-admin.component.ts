@@ -14,7 +14,6 @@ export class HeaderAdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.page = "Pages d'administration";
   }
 
 }

@@ -17,6 +17,9 @@ export class LoginComponent implements OnInit {
   user: User;
   loginSubscription: Subscription;
   errorMessage: string;
+  page = 'Connexion';
+  currentpage = "Se logger";
+  parentPage = "Admin";
 
   constructor(private usersService: UsersService,
     private fb: FormBuilder,
@@ -29,8 +32,8 @@ export class LoginComponent implements OnInit {
 
   initFormLogin() {
     this.loginForm = this.fb.group({
-      email: this.fb.control('', [Validators.email]),
-      password: this.fb.control('', [Validators.minLength(6)])
+      email: this.fb.control(' ', [Validators.email]),
+      password: this.fb.control('password', [Validators.minLength(3)])
     });
   }
 
@@ -39,7 +42,6 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email').value;
     const password = this.loginForm.get('password').value;
     const newUser: User = { email: email, password: password };
-
     this.usersService.authentifier(newUser)
       .then(
         (data) => {
@@ -48,6 +50,11 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/checkout']);
           } else {
             this.router.navigate(['/shop']);
+            this.loginForm.reset();
+            // this.loginForm.reset({
+            //   email: { value: 'name', disabled: true },
+            //   password: ''
+            // });
           }
         }
       )

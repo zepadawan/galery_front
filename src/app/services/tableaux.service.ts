@@ -1,4 +1,3 @@
-import { AppComponent } from './../app.component';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -16,6 +15,8 @@ export class TableauxService {
   tableaux: Tableau[] = [];
   tableauSubject = new Subject<any[]>();
   //  tableau: Tableau;
+  numberOfProductByPage = 9;
+  nomberOfPage = 0;
   constructor(private http: HttpClient) {
     this.getTableauxFromServer();
   }
@@ -40,7 +41,6 @@ export class TableauxService {
   getTableauById(id: number) {
     const url = `${environment.api + 'oeuvres/' + id}`;
     console.log(url);
-
     return new Promise((resolve, reject) => {
       this.http.get(url).subscribe(
         (data: Result) => {
@@ -51,7 +51,6 @@ export class TableauxService {
           }
         },
         (err) => {
-          console.log(err);
           reject(err)
         }
       )
@@ -85,24 +84,19 @@ export class TableauxService {
     })
   }
 
-  updateTableau(id: number, tableau: Tableau, image: File | string) {
+  updateTableau(id: number, tableau: Tableau) {
     const url = `${environment.api + 'oeuvres/' + id}`;
-
+    const body = {
+      tableau: tableau
+    }
     return new Promise((resolve, reject) => {
-      let tableauData: FormData = new FormData();
-      if (typeof (image) === 'string') {
-        tableau.nom_image = image
-      } else {
-        tableauData.append('image', image);
-      }
-
-      tableauData.append('tableau', JSON.stringify(tableau))
-      this.http.put(url, tableauData).subscribe(
+      this.http.put(url, body.tableau).subscribe(
         (data: Result) => {
+          resolve(data);
         },
         (err) => {
           reject(err);
-          console.log(err);
+          console.log(err.message);
         }
       )
     })
@@ -111,11 +105,11 @@ export class TableauxService {
   // Afficahege par pages => Pagination
   getProductbyPage(numberPage: number): Tableau[] {
 
-    // this.nomberOfPage = Math.trunc(this.products.length / this.numberOfProductByPage);
-    // if (numberPage > 0 || numberPage <= (this.nomberOfPage)) {
-    //   const prodResult = this.products.slice(numberPage * this.numberOfProductByPage, (numberPage + 1) * this.numberOfProductByPage);
-    //   return prodResult;
-    // }
+    this.nomberOfPage = Math.trunc(this.tableaux.length / this.numberOfProductByPage);
+    if (numberPage > 0 || numberPage <= (this.nomberOfPage)) {
+      const prodResult = this.tableaux.slice(numberPage * this.numberOfProductByPage, (numberPage + 1) * this.numberOfProductByPage);
+      return prodResult;
+    }
     return null;
 
   }

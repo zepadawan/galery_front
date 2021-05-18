@@ -12,10 +12,11 @@ export class UsersService {
 
   user: User;
   isAuth = false;
+  isAdmin = false;
   userSubject = new Subject<User>();
   userId: number;
   token = "";
-  _isAuth$ = new BehaviorSubject<boolean>(false);
+  role: string;
 
   constructor(private http: HttpClient) {
   }
@@ -38,11 +39,10 @@ export class UsersService {
               console.log(data);
               this.user = data.args;
               this.isAuth = true;
+              this.role = this.user.role;
+              this.isAdmin = ((this.role == "admin") || (this.role == "superadmin") ? true : false)
               this.userId = this.user.id;
-              this._isAuth$.next(true);
               this.token = data.token
-              console.log('token :' + this.token);
-
               resolve(data.result);
             } else {
               console.log(data);
