@@ -26,6 +26,9 @@ import { CategoryComponent } from './components/shop/category/category.component
 import { AdminComponent } from './admin/admin.component';
 import { AdminCategoriesComponent } from './admin/categories/creation-categorie/creation-categorie.component';
 import { EditCategorieComponent } from './admin/categories/edit-categorie/edit-categorie.component';
+import { AddTexteComponent } from './components/textes/add-texte/add-texte.component';
+import { EditTexteComponent } from './components/textes/edit-texte/edit-texte.component';
+import { ShowTexteComponent } from './components/textes/show-texte/show-texte.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { EditCategorieComponent } from './admin/categories/edit-categorie/edit-c
     EditTableauComponent,
     AdminCategoriesComponent,
     EditCategorieComponent,
+    AddTexteComponent,
+    EditTexteComponent,
+    ShowTexteComponent,
 
   ],
   imports: [
