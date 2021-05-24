@@ -3,21 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  //api : 'https://www.christianbialy.fr/back/api/'
-  //  api: 'http://178.170.8.35:3000',
-  api: 'http://localhost:3000/',
-  api_key: 'adsffsdfds6b-6727-46f4-8bee-2c6ce6293e41',
-  api_image: 'https://www.christianbialy.fr/images/'
+  production: true,
+  api: 'https://galeryofbialy.eu:8081/',
+  api_image: 'https://galeryofbialy.eu:8081/public/images/'
 };
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
-/*
-?API_KEY=adsffsdfds6b-6727-46f4-8bee-2c6ce6293e41
-*/
+

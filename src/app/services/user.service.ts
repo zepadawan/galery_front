@@ -12,7 +12,7 @@ export class UsersService {
 
   user: User;
   isAuth = false;
-  isAdmin = false;
+  isAdmin = true;
   userSubject = new Subject<User>();
   userId: number;
   token = "";
@@ -77,7 +77,6 @@ export class UsersService {
               console.log(data);
               this.user = data.args;
               this.isAuth = true;
-
               this.emitUsers();
               resolve(data.result);
             } else {

@@ -33,7 +33,7 @@ export class CategoryService {
           this.emitCategories();
         },
         (err) => {
-          console.log(err);
+          // console.log(err);
         }
       )
     })

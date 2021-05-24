@@ -14,7 +14,7 @@ import { CartComponent } from './components/shop/cart/cart.component';
 import { FooterComponent } from './components/gui/footer/footer.component';
 import { HeaderComponent } from './components/gui/header/header.component';
 import { NotFoundComponent } from './components/gui/not-found/not-found.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TableauxComponent } from './components/shop/tableaux/tableaux.component';
 import { HomeComponent } from './components/gui/home/home.component';
 import { GuiComponent } from './components/gui/gui.component';
@@ -29,6 +29,11 @@ import { EditCategorieComponent } from './admin/categories/edit-categorie/edit-c
 import { AddTexteComponent } from './components/textes/add-texte/add-texte.component';
 import { EditTexteComponent } from './components/textes/edit-texte/edit-texte.component';
 import { ShowTexteComponent } from './components/textes/show-texte/show-texte.component';
+
+// tinymce
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { MyEditorComponent } from './admin/myeditor/myeditor.component';
+
 
 @NgModule({
   declarations: [
@@ -56,6 +61,7 @@ import { ShowTexteComponent } from './components/textes/show-texte/show-texte.co
     AddTexteComponent,
     EditTexteComponent,
     ShowTexteComponent,
+    MyEditorComponent,
 
   ],
   imports: [
@@ -64,6 +70,8 @@ import { ShowTexteComponent } from './components/textes/show-texte/show-texte.co
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
+    EditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -27,13 +27,15 @@ export class TableauxService {
 
   getTableauxFromServer(): any {
     const url = `${environment.api + 'oeuvres/get'}`;
+    console.log(url);
+
     return this.http.get<any>(url).subscribe(
       (data: Result) => {
         this.tableaux = data.args;
         this.emitTableaux();
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     )
   }

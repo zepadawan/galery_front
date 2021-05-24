@@ -98,10 +98,11 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
 
       })
       .catch();
+  }
 
-
-
-
+  onExit() {
+    this.tableauForm.reset();
+    this.router.navigate(['/administration']);
   }
 
 

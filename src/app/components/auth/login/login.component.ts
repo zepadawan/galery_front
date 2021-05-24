@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { nextTick } from 'process';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { CartService } from 'src/app/services/cart.service';
@@ -42,6 +43,8 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email').value;
     const password = this.loginForm.get('password').value;
     const newUser: User = { email: email, password: password };
+    console.log(newUser);
+
     this.usersService.authentifier(newUser)
       .then(
         (data) => {
@@ -51,16 +54,11 @@ export class LoginComponent implements OnInit {
           } else {
             this.router.navigate(['/shop']);
             this.loginForm.reset();
-            // this.loginForm.reset({
-            //   email: { value: 'name', disabled: true },
-            //   password: ''
-            // });
           }
         }
       )
       .catch(
         (error) => {
-          console.log(error);
           this.errorMessage = error;
           setTimeout(
             () => {

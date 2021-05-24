@@ -7,6 +7,7 @@ import { Tableau } from 'src/app/models/tableau';
 import { CartService } from 'src/app/services/cart.service';
 import { TableauxService } from 'src/app/services/tableaux.service';
 import { environment } from 'src/environments/environment';
+import { UsersService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'node-single-tableau',
@@ -18,11 +19,13 @@ export class SingleTableauComponent implements OnInit {
   tableau: Tableau;
   idCategorie: number;
   categorie: string;
-  prefUrlImage = `${environment.api_image}`;
+  prefixUrlImage = environment.api_image + 'tableaux/';
+  @Input() isAdmin: boolean;
 
   constructor(private route: ActivatedRoute,
     private tableauxService: TableauxService,
     private categoryService: CategoryService,
+    private usersService: UsersService,
     private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -37,6 +40,10 @@ export class SingleTableauComponent implements OnInit {
       .catch((data: Result) => {
         console.log(data.message);
       });
+    const role = this.usersService.role;
+    if (role) {
+      this.isAdmin = ((role == 'admin') || (role == 'superadmin')) ? true : false;
+    }
 
   }
 

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit {
 
-  refApiImages = environment.api_image + "/imageChristian/";
+  refApiImages = environment.api_image + "christian/";
   constructor() { }
 
   ngOnInit(): void {

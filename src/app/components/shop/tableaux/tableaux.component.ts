@@ -19,7 +19,7 @@ export class TableauxComponent implements OnInit, OnDestroy {
   @Input() isByCategories: boolean = false;
   @Input() isAdmin: boolean;
 
-  prefixUrlImage = environment.api_image;
+  prefixUrlImage = environment.api_image + 'tableaux/';
   tableauSubscription: Subscription;
   cartData;
   currentPage = 0;
