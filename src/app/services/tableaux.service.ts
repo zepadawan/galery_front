@@ -95,6 +95,7 @@ export class TableauxService {
       this.http.put(url, body.tableau).subscribe(
         (data: Result) => {
           resolve(data);
+          this.emitTableaux();
         },
         (err) => {
           reject(err);

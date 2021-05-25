@@ -34,9 +34,13 @@ export class TableauxComponent implements OnInit, OnDestroy {
     this.tableauSubscription = this.tableauService.tableauSubject.subscribe(
       (data: Tableau[]) => {
         this.tableaux = this.tableauService.tableaux;
+      },
+      (err) => {
+        console.log(err);
       }
     );
-    this.tableauService.emitTableaux();
+    this.tableauService.getTableauxFromServer();
+
     const role = this.usersService.role;
     if (role) {
       this.isAdmin = ((role == 'admin') || (role == 'superadmin')) ? true : false;

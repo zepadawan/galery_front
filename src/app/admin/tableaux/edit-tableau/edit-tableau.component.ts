@@ -57,7 +57,8 @@ export class EditTableauComponent implements OnInit {
                 categorie: [tab.id_category,],
                 anneCreation: [tab.annee_creation,],
               });
-              this.imagePreview = `${environment.api_image}` + this.tableau.nom_image;
+              this.imagePreview = `${environment.api_image}` + 'tableaux/' + this.tableau.nom_image;
+              console.log('imagePreview = ' + this.imagePreview);
 
             }
           )
@@ -123,6 +124,7 @@ export class EditTableauComponent implements OnInit {
           this.errorMessage = err.message;
         }
       );
+    this.tableauxService.emitTableaux();
 
   }
 
