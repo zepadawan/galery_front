@@ -51,11 +51,9 @@ export class TableauxComponent implements OnInit, OnDestroy {
   }
 
   addToCart(tableau: Tableau): void {
-    this.cartService.addProductToCard(tableau);
   }
 
   deleteFromCart(tableau: Tableau): void {
-    this.cartService.deleteFromCart(tableau);
   }
 
   changePage(numberPage: number): void {

@@ -15,7 +15,6 @@ export class MyEditorComponent implements OnInit {
   }
 
   onClick() {
-    console.log(this.htmlText);
 
   }
 

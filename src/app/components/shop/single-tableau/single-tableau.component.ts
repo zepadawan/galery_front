@@ -38,7 +38,6 @@ export class SingleTableauComponent implements OnInit {
         this.getCategorieName(this.idCategorie);
       })
       .catch((data: Result) => {
-        console.log(data.message);
       });
     const role = this.usersService.role;
     if (role) {
@@ -63,6 +62,5 @@ export class SingleTableauComponent implements OnInit {
   }
 
   onAddToCart(tableau: Tableau): void {
-    this.cartService.addProductToCard(tableau);
   }
 }

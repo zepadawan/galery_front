@@ -41,7 +41,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.carts = this.cartService.carts;
-    this.cartData = this.cartService.cartData;
     this.categories = this.categoryService.categories;
 
     this.isAuth = this.usersService.isAuth;

@@ -19,7 +19,6 @@ export class ModalQuickViewComponent implements OnInit {
   }
 
   addToCart(tableau: Tableau) {
-    this.cartService.addProductToCard(tableau);
 
   }
 }

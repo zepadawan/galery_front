@@ -76,7 +76,6 @@ export class RegisterComponent implements OnInit {
           setTimeout(() => {
             this.errorMessage = null;
           }, 3000);
-          console.log(error);
         }
       );
 

@@ -36,7 +36,6 @@ export class UsersService {
         this.http.post(url, body).subscribe(
           (data: Result) => {
             if (data.status == 200) {
-              console.log(data);
               this.user = data.args;
               this.isAuth = true;
               this.role = this.user.role;
@@ -45,12 +44,10 @@ export class UsersService {
               this.token = data.token
               resolve(data.result);
             } else {
-              console.log(data);
               reject(data.message);
             }
           },
           (error) => {
-            console.log(error);
             reject(error);
           }
         )
@@ -72,9 +69,7 @@ export class UsersService {
         };
         this.http.post(url, body).subscribe(
           (data: Result) => {
-            console.log(data);
             if (data.status == 200) {
-              console.log(data);
               this.user = data.args;
               this.isAuth = true;
               this.emitUsers();

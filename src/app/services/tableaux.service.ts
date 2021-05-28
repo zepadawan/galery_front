@@ -26,23 +26,20 @@ export class TableauxService {
   }
 
   getTableauxFromServer(): any {
-    const url = `${environment.api + 'oeuvres/get'}`;
-    console.log(url);
-
+    const url = `${environment.api + 'oeuvres'}`;
     return this.http.get<any>(url).subscribe(
       (data: Result) => {
         this.tableaux = data.args;
         this.emitTableaux();
       },
       (error) => {
-        // console.log(error);
+        console.log(error);
       }
     )
   }
 
   getTableauById(id: number) {
     const url = `${environment.api + 'oeuvres/' + id}`;
-    console.log(url);
     return new Promise((resolve, reject) => {
       this.http.get(url).subscribe(
         (data: Result) => {
@@ -59,22 +56,18 @@ export class TableauxService {
     })
   }
 
-  createNewTableau(tableau: Tableau) {
+  createNewTableau(newtableau: Tableau) {
     const url = `${environment.api + 'oeuvres/register'}`;
-    console.log(url);
-
     const body = {
-      tableau: tableau
+      tableau: newtableau
     }
 
     return new Promise((resolve, reject) => {
-      this.http.post(url, body).subscribe(
+      this.http.post(url, newtableau).subscribe(
         (data: Result) => {
-          console.log(data);
           if (data.status == 201) {
             resolve(data.args);
           } else {
-            console.log(data.message);
             reject(data.message);
           }
         },
@@ -92,14 +85,14 @@ export class TableauxService {
       tableau: tableau
     }
     return new Promise((resolve, reject) => {
-      this.http.put(url, body.tableau).subscribe(
+      this.http.put(url, tableau).subscribe(
         (data: Result) => {
           resolve(data);
           this.emitTableaux();
         },
         (err) => {
           reject(err);
-          console.log(err.message);
+          console.log(err);
         }
       )
     })
@@ -117,36 +110,24 @@ export class TableauxService {
 
   }
 
-  saveImageOnServer(file: File) {
+  saveImageOnServer(file: File, id_categorie: number) {
+    // if (file) {
     const urlImage = `${environment.api_image}`;
     const url = `${environment.api + 'upload'}`;
-    console.log('url = ' + url);
-    console.log(file);
     let formdata: any = new FormData();
-    formdata.append("sampleFile", file)
+    formdata.append("sampleFile", file);
+    formdata.append("id_categorie", id_categorie);
 
     this.http.post(url, formdata).subscribe(
       (data: Result) => {
-        console.log(data);
+        console.log('Image save in server');
       },
       (err) => {
-        console.log('erreur ----');
         console.log(err);
       });
+    // }
   }
 
 
-
-  // return new Promise((resolve, reject) => {
-  //   this.http.post(url, file).subscribe(
-  //     (data: Result) => {
-  //       console.log('file upload = OK');
-  //     },
-  //     (err) => {
-  //       console.log('erreur ----');
-  //       console.log(err);
-  //     }
-  //   )
-  // });
 }
 

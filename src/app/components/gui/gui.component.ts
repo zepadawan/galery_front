@@ -17,7 +17,6 @@ export class GuiComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.texteSubscription = this.textesService.textesubject.subscribe(
       (data) => {
-        console.log(data);
         this.textes = data;
       }
     );

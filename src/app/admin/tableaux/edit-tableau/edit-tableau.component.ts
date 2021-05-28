@@ -58,7 +58,6 @@ export class EditTableauComponent implements OnInit {
                 anneCreation: [tab.annee_creation,],
               });
               this.imagePreview = `${environment.api_image}` + 'tableaux/' + this.tableau.nom_image;
-              console.log('imagePreview = ' + this.imagePreview);
 
             }
           )
@@ -96,7 +95,7 @@ export class EditTableauComponent implements OnInit {
 
   onSubmit() {
     const newTableau = new Tableau();
-    newTableau.id = this.tableau.id
+    const id = this.tableau.id;
     newTableau.nom = this.tableauForm.get('name').value;
     newTableau.prix = this.tableauForm.get('prix').value;
     newTableau.description = this.tableauForm.get('description').value;
@@ -104,10 +103,11 @@ export class EditTableauComponent implements OnInit {
     newTableau.id_category = this.tableauForm.get('categorie').value;
     newTableau.annee_creation = this.tableauForm.get('anneCreation').value;
     newTableau.nom_image = (this.tableauForm.get('sampleFile').value).name;
-    console.log(newTableau);
 
+    // sauvegarde image
+    this.tableauxService.saveImageOnServer(this.tableauForm.get('sampleFile').value, newTableau.id_category);
     // sauvegarde des modifications
-    this.tableauxService.updateTableau(newTableau.id, newTableau)
+    this.tableauxService.updateTableau(id, newTableau)
       .then(
         () => {
           this.successMessage = 'La modification est OK !';

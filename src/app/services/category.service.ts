@@ -33,7 +33,7 @@ export class CategoryService {
           this.emitCategories();
         },
         (err) => {
-          // console.log(err);
+          console.log(err);
         }
       )
     })
@@ -41,7 +41,6 @@ export class CategoryService {
 
   getCategoryNameById(id: number) {
     const url = `${environment.api + 'categories/' + id}`;
-    console.log(url);
     return new Promise((resolve, reject) => {
       this.http.get(url).subscribe(
         (data: Result) => {

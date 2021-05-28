@@ -43,13 +43,13 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email').value;
     const password = this.loginForm.get('password').value;
     const newUser: User = { email: email, password: password };
-    console.log(newUser);
 
     this.usersService.authentifier(newUser)
       .then(
         (data) => {
           const carts = this.cartService.carts;
-          if (carts.length > 0) {
+          // if (carts.length > 0) {
+          if (carts) {
             this.router.navigate(['/checkout']);
           } else {
             this.router.navigate(['/shop']);

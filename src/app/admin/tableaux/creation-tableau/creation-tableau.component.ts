@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { Tableau } from 'src/app/models/tableau';
 import { TableauxService } from 'src/app/services/tableaux.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CategoryService } from 'src/app/services/category.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'node-admin-tableaux',
@@ -22,9 +24,13 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
 
   tableaux: Tableau[] = [];
   tableauSubscription: Subscription;
+  categories: Category[] = [];
+  categorieSubscription: Subscription;
+
   currentpage = "Ajouter un tableau";
   parentPage = "Admin";
   constructor(private tableauxService: TableauxService,
+    private categoryService: CategoryService,
     private fb: FormBuilder,
     private usersService: UsersService,
     // private http: HttpClient,
@@ -34,13 +40,18 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initFormBuilder();
     this.userId = this.usersService.userId;
+
     this.tableauSubscription = this.tableauxService.tableauSubject.subscribe(
       (data) => {
         this.tableaux = this.tableauxService.tableaux;
       }
     )
     this.tableauxService.emitTableaux();
+
+    this.categories = this.categoryService.categories;
+
   };
+
 
   ngOnDestroy(): void {
     this.tableauSubscription.unsubscribe();
@@ -82,11 +93,11 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
     tableau.nom = this.tableauForm.get('name').value;
     tableau.description = this.tableauForm.get('description').value;
     tableau.prix = this.tableauForm.get('price').value;
+    tableau.id_category = this.tableauForm.get('categorie').value;
     tableau.nom_image = (this.tableauForm.get('sampleFile').value).name;
-    this.tableauxService.saveImageOnServer(this.tableauForm.get('sampleFile').value);
+    this.tableauxService.saveImageOnServer(this.tableauForm.get('sampleFile').value, tableau.id_category);
     this.tableauxService.createNewTableau(tableau)
       .then((data) => {
-        console.log('New Tableau OK');
         this.successMessage = 'le nouveau tableau : ' + tableau.nom + '  est enregistré';
         setTimeout(
           () => {

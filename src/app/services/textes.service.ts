@@ -25,35 +25,16 @@ export class TextesService {
 
   async getTextesFromServer() {
     const url = `${environment.api + "categtableaux/"}`;
-    console.log(url);
     this.http.get<Texte[]>(url).subscribe(
       (data) => {
-        console.log(typeof (data));
-        console.log(data);
         this.textes = data;
         this.emitTextes();
       },
       (error) => {
-        console.log("erreur =>");
         console.log(error);
       }
     );
   }
 
-  // getTextesByPageFromServer(page: string): void {
-  //   const url = `${environment.api + "gettextes.php/?page=" + page}`;
-  //   console.log(url);
-
-  //   this.http.get(url).subscribe(
-  //     (result: Result) => {
-  //       console.log(result);
-  //       this.textes = result.args;
-  //       this.emitTextes();
-  //     },
-  //     (error) => {
-  //       console.log('error : ' + error);
-  //     }
-  //   );
-  // }
 
 }

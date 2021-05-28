@@ -28,7 +28,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
               return tableau.id_category == +request.id;
             });
             this.tableaux = tabs;
-            console.log(tabs);
           }
         );
         this.tableauxService.emitTableaux();

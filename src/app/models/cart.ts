@@ -1,7 +1,9 @@
-import { Tableau } from "./tableau";
+import { Item } from "./items"
 
-export interface Cart {
-  number: number,
-  tableau: Tableau,
-
+export class Cart {
+  items: Item[];
+  resume: {
+    quantity: number,
+    cost: number
+  }
 }
