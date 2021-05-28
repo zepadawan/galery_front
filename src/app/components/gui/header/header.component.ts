@@ -10,6 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { TextesService } from 'src/app/services/textes.service';
 import { UsersService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'node-header',
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private cartService: CartService,
     private usersService: UsersService,
+    private route: Router,
     private categoryService: CategoryService) { }
 
   ngOnInit(): void {
@@ -60,6 +62,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onLogOut() {
     this.usersService.logOut();
     this.isAuth = this.usersService.isAuth;
+    this.route.navigate(['/shop']);
   }
 
 }
