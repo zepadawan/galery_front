@@ -28,7 +28,7 @@
           <div class="card product-card ">
             <div class="card-body ">
               <div class="product-thumbnail position-relative ">
-                <span class="badge badge-success top-right ">A vendre</span>
+                <span *ngIf="isAdmin" class="badge badge-success top-right ">A vendre</span>
                 <a [routerLink]="[ '/single-tableau',tableau.id] ">
                   <img class="first-img " width="460 " height="300 " [src]="prefixUrlImage + tableau.nom_image "
                     alt="thumbnail ">
@@ -37,9 +37,8 @@
                 <ul class="product-links d-flex justify-content-center ">
 
                   <li>
-                    <a href="# " data-toggle="modal " [attr.data-target]=" '#quick-view-' ">
-                      <span data-toggle="tooltip " data-placement="bottom " title="Quick view "
-                        class="icon-magnifier "></span>
+                    <a [routerLink]="['/show-tableau', tableau.id]" routerLinkActive="router-link-active">
+                      <span data-placement="bottom " title="Agrandir" class="icon-magnifier "></span>
                     </a>
                   </li>
                 </ul>
@@ -60,10 +59,11 @@
                                     <span class="ion-ios-star de-selected "></span>
                                 </div> -->
                 <div class="d-flex align-items-center justify-content-between ">
-                  <h6 class="product-price "> {{tableau.prix}} € </h6>
-                  <button class="pro-btn " (click)="addToCart(tableau) " data-toggle="modal " title="Acheter "
-                    [attr.data-target]=" '#add-to-cart-'+ tableau.id "><i class="icon-basket "></i></button>
-                  <button class="pro-btn " *ngIf="isAdmin " [routerLink]="[ '/edit-tableaux',tableau.id] "
+                  <h6 class="product-price" *ngIf="isAdmin"> {{tableau.prix}} € </h6>
+                  <button class="pro-btn" *ngIf="isAdmin" (click)="addToCart(tableau)" data-toggle="modal"
+                    title="Acheter " [attr.data-target]=" '#add-to-cart-'+ tableau.id"><i
+                      class="icon-basket "></i></button>
+                  <button class="pro-btn" *ngIf="isAdmin" [routerLink]="[ '/edit-tableaux',tableau.id] "
                     title="Editer "><i class="ion-android-create "></i></button>
                 </div>
 

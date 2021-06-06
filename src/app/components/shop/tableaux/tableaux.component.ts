@@ -6,6 +6,7 @@ import { Tableau } from 'src/app/models/tableau';
 import { CartService } from 'src/app/services/cart.service';
 import { TableauxService } from 'src/app/services/tableaux.service';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'node-tableaux',
@@ -27,6 +28,7 @@ export class TableauxComponent implements OnInit, OnDestroy {
 
   constructor(private tableauService: TableauxService,
     private usersService: UsersService,
+    private router: Router,
     private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -80,6 +82,10 @@ export class TableauxComponent implements OnInit, OnDestroy {
       this.tableaux = tableaux;
       this.currentPage = newCurrentPage;
     }
+  }
+
+  onShow(id: number) {
+    this.router.navigate(['/show-tableau/' + id]);
   }
 
 }

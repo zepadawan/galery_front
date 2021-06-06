@@ -33,6 +33,7 @@ import { ShowTexteComponent } from './components/textes/show-texte/show-texte.co
 // tinymce
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { MyEditorComponent } from './admin/myeditor/myeditor.component';
+import { ShowTableauComponent } from './admin/tableaux/show-tableau/show-tableau.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { MyEditorComponent } from './admin/myeditor/myeditor.component';
     EditTexteComponent,
     ShowTexteComponent,
     MyEditorComponent,
+    ShowTableauComponent,
 
   ],
   imports: [

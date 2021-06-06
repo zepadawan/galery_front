@@ -15,6 +15,7 @@ import { CartComponent } from './components/shop/cart/cart.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { SingleTableauComponent } from './components/shop/single-tableau/single-tableau.component';
 import { TableauxComponent } from './components/shop/tableaux/tableaux.component';
+import { ShowTableauComponent } from './admin/tableaux/show-tableau/show-tableau.component';
 
 const routes: Routes = [
   // { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'tableaux', component: TableauxComponent, },
   { path: 'category/:id', component: CategoryComponent, },
   { path: 'single-tableau/:id', component: SingleTableauComponent, },
+  { path: 'show-tableau/:id', component: ShowTableauComponent, },
 
   // Administration
   { path: 'administration', component: AdminComponent, canActivate: [AuthGuard] },
