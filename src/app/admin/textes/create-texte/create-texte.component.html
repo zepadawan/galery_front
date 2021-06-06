@@ -9,7 +9,11 @@
 
     <div class="col-md-8">
 
-      <form [formGroup]="categorieForm">
+      <form [formGroup]="texteForm">
+
+        <div class="form-group">
+          <label for="page">page du texte</label>
+        </div>
 
         <div class="form-group">
           <label for="libelle">Libellé de la catégorie</label>
@@ -17,12 +21,11 @@
             class="form-control bg-light">
         </div>
 
-        <button type="button" (click)="onSubmit()" class="btn theme-btn--dark1 btn--md m-2"
-          [disabled]="categorieForm.invalid">Modifier</button>
-        <!-- <button type="button" (click)="onSubmitContinue()" class="btn theme-btn--dark1 btn--md m-2"
-          [disabled]="categorieForm.invalid">Modifier  et continuer</button> -->
-        <!-- <button type="button" (click)="onExit()" class="btn theme-btn--dark1 btn--md m-2">Annuler</button> -->
-        <button type="button" routerLink="/admin-categories" routerLinkActive="router-link-active"
+        <button type="button" (click)="onSubmit(true)" class="btn theme-btn--dark1 btn--md m-2"
+          [disabled]="texteForm.invalid">Ajouter</button>
+        <button type="button" (click)="onSubmit(false)" class="btn theme-btn--dark1 btn--md m-2"
+          [disabled]="texteForm.invalid">Ajouter et continuer</button>
+        <button type="button" routerLink="/admin-textes" routerLinkActive="router-link-active"
           class="btn theme-btn--dark1 btn--md m-2">Annuler</button>
 
       </form>

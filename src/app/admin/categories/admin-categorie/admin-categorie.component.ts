@@ -5,19 +5,22 @@ import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'node-admin-categories',
-  templateUrl: './creation-categorie.component.html',
-  styleUrls: ['./creation-categorie.component.css']
+  templateUrl: './admin-categorie.component.html',
+  styleUrls: ['./admin-categorie.component.css']
 })
 export class AdminCategoriesComponent implements OnInit, OnDestroy {
 
   currentpage = "Gestion des catégories";
-  parentPage = "Admin";
+  parentPage = "Categories";
+  page = "Administration";
+
   categories: Category[] = [];
   catLength;
   adminCategoriesSubscription: Subscription;
   constructor(private categoryServices: CategoryService) { }
 
   ngOnInit(): void {
+    this.categoryServices.getCategoriesFromServer();;
     this.adminCategoriesSubscription = this.categoryServices.categorySubject.subscribe(
       (data) => {
         this.categories = this.categoryServices.categories;

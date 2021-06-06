@@ -12,6 +12,7 @@ export class TextesService {
 
   api = environment.api;
   textes: Texte[] = [];
+  texte: Texte;
 
   textesubject = new Subject<any[]>();
 
@@ -24,7 +25,7 @@ export class TextesService {
   }
 
   async getTextesFromServer() {
-    const url = `${environment.api + "categtableaux/"}`;
+    const url = `${environment.api + "textes/"}`;
     this.http.get<Texte[]>(url).subscribe(
       (data) => {
         this.textes = data;
@@ -35,6 +36,62 @@ export class TextesService {
       }
     );
   }
+
+  getTexteNameById(id: number) {
+    const url = `${environment.api + 'textes/' + id}`;
+    return new Promise((resolve, reject) => {
+      this.http.get(url).subscribe(
+        (data: Result) => {
+          if (data.status == 200) {
+            this.texte = data.args;
+            resolve(data.args);
+          } else {
+            reject(data.message);
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    })
+  };
+
+
+  createNewTexte(newTexte: Texte) {
+    const url = `${environment.api + 'textes'}`;
+    return new Promise((resolve, reject) => {
+      this.http.post(url, newTexte).subscribe(
+        (data: Result) => {
+          if (data.status == 201) {
+            resolve(data.args);
+          } else {
+            reject(data.message);
+          }
+        },
+        (err) => {
+          console.log(err);
+          reject(err);
+        }
+      )
+    })
+  }
+
+  updateTexte(id: number, texte: Texte) {
+    const url = `${environment.api + 'textes/' + id}`;
+    return new Promise((resolve, reject) => {
+      this.http.put(url, texte).subscribe(
+        (data: Result) => {
+          resolve(data);
+          console.log('Update OK !');
+          this.emitTextes();
+        },
+        (err) => {
+          reject(false);
+        })
+    })
+  };
+
+
 
 
 }

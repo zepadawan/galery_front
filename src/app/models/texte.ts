@@ -1,6 +1,6 @@
-export interface Texte {
-  idTexte: number,
+export class Texte {
+  id: number;
   page: string;
-  numero: number,
-  texte: string
+  numero: number;
+  texte: string;
 }

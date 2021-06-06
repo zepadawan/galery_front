@@ -7,5 +7,7 @@ export class Tableau {
   description?: string;;
   dimension?: string;
   annee_creation?: string;
-  a_vendre?: boolean
+  a_vendre?: number;
+  visible?: number;
+
 }

@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
           this.successMessage = data.dateBirth;
           setTimeout(() => {
             this.successMessage = null;
-          }, 3000);
+          }, 1000);
           this.router.navigate(['/shop']);
         }
       )
@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
           this.errorMessage = 'erreur' + error;
           setTimeout(() => {
             this.errorMessage = null;
-          }, 3000);
+          }, 1000);
         }
       );
 

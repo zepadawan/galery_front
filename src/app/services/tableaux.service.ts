@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Result } from '../models/result';
 import { Tableau } from '../models/tableau';
+import { UsersService } from './user.service';
 
 
 @Injectable({
@@ -17,7 +18,8 @@ export class TableauxService {
   //  tableau: Tableau;
   numberOfProductByPage = 9;
   nomberOfPage = 0;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private usersService: UsersService) {
     this.getTableauxFromServer();
   }
 
@@ -26,16 +28,19 @@ export class TableauxService {
   }
 
   getTableauxFromServer(): any {
+
+    const isAdmin = this.usersService.isAdmin;
+
     const url = `${environment.api + 'oeuvres'}`;
     return this.http.get<any>(url).subscribe(
       (data: Result) => {
-        this.tableaux = data.args;
+        const tabs = data.args.filter(tableau => {
+          return (tableau.visible == 1);
+        })
+        this.tableaux = tabs;
         this.emitTableaux();
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
+
+      })
   }
 
   getTableauById(id: number) {

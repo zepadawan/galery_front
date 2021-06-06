@@ -1,9 +1,5 @@
-import { ShowTexteComponent } from './components/textes/show-texte/show-texte.component';
 import { AuthGuard } from './services/auth.guard';
-import { EditTableauComponent } from './admin/tableaux/edit-tableau/edit-tableau.component';
-import { AdminCategoriesComponent } from './admin/categories/creation-categorie/creation-categorie.component';
 import { CategoryComponent } from './components/shop/category/category.component';
-import { AdminTableauxComponent } from './admin/tableaux/creation-tableau/creation-tableau.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
@@ -17,38 +13,47 @@ import { SingleTableauComponent } from './components/shop/single-tableau/single-
 import { TableauxComponent } from './components/shop/tableaux/tableaux.component';
 import { ShowTableauComponent } from './admin/tableaux/show-tableau/show-tableau.component';
 
+import { AdminCategoriesComponent } from './admin/categories/admin-categorie/admin-categorie.component';
+import { EditCategorieComponent } from './admin/categories/edit-categorie/edit-categorie.component';
+
+import { CreateCategorieComponent } from './admin/categories/create-categorie/create-categorie.component';
+
+import { AdminTexteComponent } from './admin/textes/admin-texte/admin-texte.component';
+import { CreateTexteComponent } from './admin/textes/create-texte/create-texte.component';
+import { EditTexteComponent } from './admin/textes/edit-texte/edit-texte.component';
+import { ShowTexteComponent } from './admin/textes/show-texte/show-texte.component';
+
+import { EditTableauComponent } from './admin/tableaux/edit-tableau/edit-tableau.component';
+import { AdminTableauComponent } from './admin/tableaux/admin-tableau/admin-tableau.component';
+import { CreateTableauComponent } from './admin/tableaux/creation-tableau/creation-tableau.component';
+
+
 const routes: Routes = [
-  // { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  // { path: 'login', component: LoginComponent, },
-  // { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
-  // { path: 'shop', component: ShopComponent, canActivate: [AuthGuard] },
-  // { path: 'tableaux', component: TableauxComponent, canActivate: [AuthGuard] },
-  // { path: 'category/:id', component: CategoryComponent, canActivate: [AuthGuard] },
-  // { path: 'single-tableau/:id', component: SingleTableauComponent, canActivate: [AuthGuard] },
-  // // Administration
-  // { path: 'administration', component: AdminComponent, canActivate: [AuthGuard] },
-  // { path: 'admin_tableaux', component: AdminTableauxComponent, canActivate: [AuthGuard] },
-  // { path: 'edit-tableaux/:id', component: EditTableauComponent, canActivate: [AuthGuard] },
-  // { path: 'admin_categories', component: AdminCategoriesComponent, canActivate: [AuthGuard] },
-  // { path: 'admin_textes', component: ShowTexteComponent, canActivate: [AuthGuard] },
 
   { path: 'home', component: HomeComponent, },
   { path: 'login', component: LoginComponent, },
   { path: 'register', component: RegisterComponent, },
   { path: 'shop', component: ShopComponent, },
   { path: 'tableaux', component: TableauxComponent, },
-  { path: 'category/:id', component: CategoryComponent, },
   { path: 'single-tableau/:id', component: SingleTableauComponent, },
   { path: 'show-tableau/:id', component: ShowTableauComponent, },
+  { path: 'category/:id', component: CategoryComponent, },
 
   // Administration
   { path: 'administration', component: AdminComponent, canActivate: [AuthGuard] },
-  { path: 'admin_tableaux', component: AdminTableauxComponent, canActivate: [AuthGuard] },
+
+  { path: 'admin-tableaux', component: AdminTableauComponent, canActivate: [AuthGuard] },
+  { path: 'create-tableaux', component: CreateTableauComponent, canActivate: [AuthGuard] },
   { path: 'edit-tableaux/:id', component: EditTableauComponent, canActivate: [AuthGuard] },
-  { path: 'admin_categories', component: AdminCategoriesComponent, canActivate: [AuthGuard] },
-  { path: 'admin_textes', component: ShowTexteComponent, canActivate: [AuthGuard] },
 
+  { path: 'admin-categories', component: AdminCategoriesComponent, canActivate: [AuthGuard] },
+  { path: 'edit-categories/:id', component: EditCategorieComponent, canActivate: [AuthGuard] },
+  { path: 'create-categories', component: CreateCategorieComponent, canActivate: [AuthGuard] },
 
+  { path: 'admin-textes', component: AdminTexteComponent, canActivate: [AuthGuard] },
+  { path: 'edit-textes/:id', component: EditTexteComponent, canActivate: [AuthGuard] },
+  { path: 'create-textes', component: CreateTexteComponent, canActivate: [AuthGuard] },
+  { path: 'show-texte', component: ShowTexteComponent, canActivate: [AuthGuard] },
 
 
   // Paiement

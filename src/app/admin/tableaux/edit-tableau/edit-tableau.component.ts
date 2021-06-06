@@ -56,6 +56,9 @@ export class EditTableauComponent implements OnInit {
                 sampleFile: [tab.nom_image,],
                 categorie: [tab.id_category,],
                 anneCreation: [tab.annee_creation,],
+                visible: [tab.visible,],
+                a_vendre: [tab.a_vendre,],
+
               });
               this.imagePreview = `${environment.api_image}` + 'tableaux/' + this.tableau.nom_image;
 
@@ -75,6 +78,9 @@ export class EditTableauComponent implements OnInit {
       sampleFile: ['',],
       categorie: ['',],
       anneCreation: ['',],
+      visible: [false,],
+      a_vendre: [false,],
+
     });
   }
 
@@ -103,6 +109,10 @@ export class EditTableauComponent implements OnInit {
     newTableau.id_category = this.tableauForm.get('categorie').value;
     newTableau.annee_creation = this.tableauForm.get('anneCreation').value;
     newTableau.nom_image = (this.tableauForm.get('sampleFile').value).name;
+    newTableau.visible = (this.tableauForm.get('visible').value);
+    newTableau.a_vendre = (this.tableauForm.get('a_vendre').value);
+
+
 
     // sauvegarde image
     this.tableauxService.saveImageOnServer(this.tableauForm.get('sampleFile').value, newTableau.id_category);
@@ -114,9 +124,9 @@ export class EditTableauComponent implements OnInit {
           setTimeout(
             () => {
               this.successMessage = null;
-            }, 3000);
-          this.tableauForm.reset();
-          this.router.navigate(['/shop']);
+              this.tableauForm.reset();
+              this.router.navigate(['/shop']);
+            }, 1000);
         }
       )
       .catch(

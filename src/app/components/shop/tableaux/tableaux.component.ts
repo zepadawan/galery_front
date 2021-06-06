@@ -33,15 +33,15 @@ export class TableauxComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    this.tableauService.getTableauxFromServer();
     this.tableauSubscription = this.tableauService.tableauSubject.subscribe(
       (data: Tableau[]) => {
-        this.tableaux = this.tableauService.tableaux;
+        this.tableaux = data;
       },
       (err) => {
         console.log(err);
       }
     );
-    this.tableauService.getTableauxFromServer();
 
     const role = this.usersService.role;
     if (role) {

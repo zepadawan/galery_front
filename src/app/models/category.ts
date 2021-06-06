@@ -1,4 +1,4 @@
-export interface Category {
-  id: number,
-  libelle: string,
+export class Category {
+  id: number;
+  libelle: string;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'node-edit-texte',
@@ -7,6 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditTexteComponent implements OnInit {
 
+  page = "Administration";
+  currentpage = "Edition des textes";
+  parentPage = "Textes";
+
+  categorieForm: FormGroup;
+  successMessage: string;
+  errorMessage: string;
   constructor() { }
 
   ngOnInit(): void {

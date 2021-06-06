@@ -19,8 +19,9 @@ export class LoginComponent implements OnInit {
   loginSubscription: Subscription;
   errorMessage: string;
   page = 'Connexion';
-  currentpage = "Se logger";
-  parentPage = "Admin";
+  currentpage = "Se Connecter";
+  parentPage = "connexion";
+  showPassword = false;
 
   constructor(private usersService: UsersService,
     private fb: FormBuilder,
@@ -29,12 +30,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFormLogin();
+    this.loginForm.reset();
   }
 
   initFormLogin() {
     this.loginForm = this.fb.group({
-      email: this.fb.control(' ', [Validators.email]),
-      password: this.fb.control('password', [Validators.minLength(3)])
+      email: this.fb.control('', [Validators.email]),
+      password: this.fb.control('', [Validators.minLength(3)])
     });
   }
 
@@ -63,10 +65,14 @@ export class LoginComponent implements OnInit {
           setTimeout(
             () => {
               this.errorMessage = null;
-            }, 4000);
+            }, 1000);
         }
       )
   };
 
+  onShowPassword() {
+    this.showPassword = !this.showPassword;
+
+  }
 
 }

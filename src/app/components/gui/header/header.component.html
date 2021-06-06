@@ -134,16 +134,25 @@
         <li routerLinkActive="active" *ngIf="!isAuth"><a routerLink="/login">Connexion</a></li>
         <li routerLinkActive="active" *ngIf="isSuperArmin"><a routerLink="/register">Créer un compte</a></li>
         <li (click)="onLogOut()" *ngIf="isAuth"><a class="btn">Déconnecter</a></li>
-        <li routerLinkActive="active" *ngIf="isAdmin"><a routerLink="/administration">Gestion des tables</a>
+        <li routerLinkActive="active"><a routerLink="/administration">Gestion des tables</a>
           <ul class="sub-menu" style="width :100px">
             <li>
-              <a routerLink="/admin_tableaux">Ajouter un tableau</a>
+              <a routerLink="/admin-tableaux">Gestion des tableaux</a>
             </li>
             <li>
-              <a routerLink="/admin_categories">Gestion des catégoies</a>
+              <a routerLink="/create-tableaux">Création des tableaux</a>
             </li>
             <li>
-              <a routerLink="/admin_textes">Gestion des textes</a>
+              <a routerLink="/admin-categories">Gestion des catégoies</a>
+            </li>
+            <li>
+              <a routerLink="/create-categories">Création des catégoies</a>
+            </li>
+            <li>
+              <a routerLink="/admin-textes">Gestion des textes</a>
+            </li>
+            <li>
+              <a routerLink="/create-textes">Création des textes</a>
             </li>
           </ul>
         </li>

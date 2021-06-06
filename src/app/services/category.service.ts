@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { Category } from './../models/category';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -53,18 +54,51 @@ export class CategoryService {
         },
         (err) => {
           console.log(err);
+        }
+      );
+    })
+  };
 
+
+  createNewCategorie(newCategorie: Category) {
+    const url = `${environment.api + 'categories'}`;
+    return new Promise((resolve, reject) => {
+      this.http.post(url, newCategorie).subscribe(
+        (data: Result) => {
+          if (data.status == 201) {
+            resolve(data.args);
+          } else {
+            reject(data.message);
+          }
+        },
+        (err) => {
+          console.log(err);
+          reject(err);
         }
       )
     })
+  }
 
+  updateCategory(id: number, categorie: Category) {
+    const url = `${environment.api + 'categories/' + id}`;
+    console.log(categorie);
+
+    return new Promise((resolve, reject) => {
+      this.http.put(url, categorie).subscribe(
+        (data: Result) => {
+          resolve(data);
+          console.log('Update OK !');
+          this.emitCategories();
+        },
+        (err) => {
+          reject(false);
+        })
+    })
   };
 
 
 
 
+
+
 }
-
-
-
-

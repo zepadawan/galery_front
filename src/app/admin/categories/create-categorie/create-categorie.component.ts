@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { on } from 'events';
 import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
-  selector: 'node-edit-categorie',
-  templateUrl: './edit-categorie.component.html',
-  styleUrls: ['./edit-categorie.component.css']
+  selector: 'node-create-categorie',
+  templateUrl: './create-categorie.component.html',
+  styleUrls: ['./create-categorie.component.css']
 })
-export class EditCategorieComponent implements OnInit {
+export class CreateCategorieComponent implements OnInit {
 
   page = "Administration";
-  currentpage = "Edition des catégories";
+  currentpage = "Création des catégories";
   parentPage = "Categories";
 
 
@@ -49,11 +50,10 @@ export class EditCategorieComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(other: boolean) {
     const newCategorie = new Category();
-    const id = this.categorie.id;
     newCategorie.libelle = this.categorieForm.get('libelle').value;
-    this.categoryService.updateCategory(id, newCategorie)
+    this.categoryService.createNewCategorie(newCategorie)
       .then(
         () => {
           this.successMessage = 'La modification est OK !';
@@ -61,7 +61,11 @@ export class EditCategorieComponent implements OnInit {
             () => {
               this.successMessage = null;
               this.categorieForm.reset();
-              this.router.navigate(['/admin-categories']);
+              if (other) {
+                this.router.navigate(['/admin-categories']);
+              } else {
+                // this.router.navigate(['/create-categories']);
+              }
             }, 1000);
         }
       )
@@ -71,11 +75,6 @@ export class EditCategorieComponent implements OnInit {
         }
       );
     this.categoryService.emitCategories();
-
-
-  }
-  onExit() {
-
   }
 
 }

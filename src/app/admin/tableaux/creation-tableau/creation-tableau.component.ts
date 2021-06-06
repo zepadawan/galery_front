@@ -13,7 +13,7 @@ import { Category } from 'src/app/models/category';
   templateUrl: './creation-tableau.component.html',
   styleUrls: ['./creation-tableau.component.css']
 })
-export class AdminTableauxComponent implements OnInit, OnDestroy {
+export class CreateTableauComponent implements OnInit, OnDestroy {
 
   tableauForm: FormGroup;
   errorMessage: string;
@@ -28,7 +28,8 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
   categorieSubscription: Subscription;
 
   currentpage = "Ajouter un tableau";
-  parentPage = "Admin";
+  parentPage = "Tableaux";
+  page = "Administration";
   constructor(private tableauxService: TableauxService,
     private categoryService: CategoryService,
     private fb: FormBuilder,
@@ -66,6 +67,8 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
       sampleFile: ['',],
       categorie: ['',],
       anneCreation: ['',],
+      visible: [true,],
+      a_vendre: [true,],
 
 
     });
@@ -76,7 +79,6 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
     this.tableauForm.get('sampleFile').patchValue(file);
     this.tableauForm.get('sampleFile').updateValueAndValidity();
     const reader = new FileReader();
-
     reader.onloadend = () => {
       if (this.tableauForm.get('sampleFile').valid) {
         this.imagePreview = (reader.result as string);
@@ -95,6 +97,9 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
     tableau.prix = this.tableauForm.get('price').value;
     tableau.id_category = this.tableauForm.get('categorie').value;
     tableau.nom_image = (this.tableauForm.get('sampleFile').value).name;
+    tableau.visible = this.tableauForm.get('visible').value;
+    tableau.a_vendre = this.tableauForm.get('a_vendre').value;
+
     this.tableauxService.saveImageOnServer(this.tableauForm.get('sampleFile').value, tableau.id_category);
     this.tableauxService.createNewTableau(tableau)
       .then((data) => {
@@ -102,10 +107,10 @@ export class AdminTableauxComponent implements OnInit, OnDestroy {
         setTimeout(
           () => {
             this.successMessage = null;
-          }, 3000);
-        this.tableauForm.reset();
-        this.router.navigate(['/shop']);
-        this.loading = false;
+            this.tableauForm.reset();
+            this.router.navigate(['/shop']);
+            this.loading = false;
+          }, 1000);
 
       })
       .catch();
