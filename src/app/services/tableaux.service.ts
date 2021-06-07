@@ -34,10 +34,11 @@ export class TableauxService {
     const url = `${environment.api + 'oeuvres'}`;
     return this.http.get<any>(url).subscribe(
       (data: Result) => {
-        const tabs = data.args.filter(tableau => {
-          return (tableau.visible == 1);
-        })
-        this.tableaux = tabs;
+        // const tabs = data.args.filter(tableau => {
+        //   return (tableau.visible == 1);
+        // })
+        // this.tableaux = tabs;
+        this.tableaux = data.args;
         this.emitTableaux();
 
       })

@@ -4,16 +4,16 @@
     <thead>
       <tr style="width:100%">
         <th style="width:10%" scope="col">Id</th>
-        <th style="width:10%" scope="col">page</th>
+        <th style="width:20%" scope="col">page</th>
         <th style="width:10%" scope="col">numéro</th>
-        <th style="width:60%" scope="col">texte...</th>
+        <th style="width:50%" scope="col">texte...</th>
         <th style="width:10%">Administration</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let texte of textes">
         <th scope="row"> {{texte.id}}</th>
-        <td>{{texte.page}}</td>
+        <td>{{texte.page_selector}}</td>
         <td>{{texte.numero}}</td>
         <td>{{texte.texte}}</td>
         <td>

@@ -1,6 +1,6 @@
 export class Texte {
-  id: number;
-  page: string;
-  numero: number;
-  texte: string;
+  id?: number;
+  page_selector?: string;
+  numero?: number;
+  texte?: string;
 }

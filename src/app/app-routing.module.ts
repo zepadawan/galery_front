@@ -51,8 +51,8 @@ const routes: Routes = [
   { path: 'create-categories', component: CreateCategorieComponent, canActivate: [AuthGuard] },
 
   { path: 'admin-textes', component: AdminTexteComponent, canActivate: [AuthGuard] },
-  { path: 'edit-textes/:id', component: EditTexteComponent, canActivate: [AuthGuard] },
-  { path: 'create-textes', component: CreateTexteComponent, canActivate: [AuthGuard] },
+  { path: 'edit-texte/:id', component: EditTexteComponent, canActivate: [AuthGuard] },
+  { path: 'create-texte', component: CreateTexteComponent, canActivate: [AuthGuard] },
   { path: 'show-texte', component: ShowTexteComponent, canActivate: [AuthGuard] },
 
 

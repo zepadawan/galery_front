@@ -26,7 +26,7 @@ export class CreateTexteComponent implements OnInit {
 
   onSubmit(other: boolean) {
     const newTexte = new Texte();
-    newTexte.page = this.texteForm.get('page').value;
+    newTexte.page_selector = this.texteForm.get('pagpage_selector').value;
     newTexte.numero = this.texteForm.get('numero').value;
     newTexte.texte = this.texteForm.get('texte').value;
     this.textesService.createNewTexte(newTexte)

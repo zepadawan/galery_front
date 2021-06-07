@@ -11,10 +11,10 @@ import { Texte } from '../models/texte';
 export class TextesService {
 
   api = environment.api;
-  textes: Texte[] = [];
+  textes: Texte[];
   texte: Texte;
 
-  textesubject = new Subject<any[]>();
+  textesubject = new Subject<Texte[]>();
 
   constructor(private http: HttpClient) {
     this.getTextesFromServer();
@@ -25,17 +25,24 @@ export class TextesService {
   }
 
   async getTextesFromServer() {
-    const url = `${environment.api + "textes/"}`;
-    this.http.get<Texte[]>(url).subscribe(
-      (data) => {
-        this.textes = data;
-        this.emitTextes();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+    const url = `${environment.api + "textes"}`;
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(url).subscribe(
+        (data: Result) => {
+          if (data.status == 200) {
+            this.textes = data.args;
+            resolve(data.args)
+            this.emitTextes();
+          } else {
+            console.log('erreur = ' + data.message);
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
+    })
+  };
 
   getTexteNameById(id: number) {
     const url = `${environment.api + 'textes/' + id}`;
@@ -78,6 +85,7 @@ export class TextesService {
 
   updateTexte(id: number, texte: Texte) {
     const url = `${environment.api + 'textes/' + id}`;
+    console.log(texte);
     return new Promise((resolve, reject) => {
       this.http.put(url, texte).subscribe(
         (data: Result) => {

@@ -25,7 +25,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
         this.tableauSubscription = this.tableauxService.tableauSubject.subscribe(
           (data: Tableau[]) => {
             const tabs = data.filter(tableau => {
-              return (tableau.id_category == +request.id && tableau.a_vendre == 1);
+              return (tableau.id_category == +request.id);
             });
             this.tableaux = tabs;
           }
