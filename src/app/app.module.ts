@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderAdminComponent } from './components/gui/header-admin/header-admin.component';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -28,6 +28,9 @@ import { ShopComponent } from './components/shop/shop.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { MyEditorComponent } from './admin/myeditor/myeditor.component';
 
+//RGPD
+import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
+
 import { AdminTableauComponent } from './admin/tableaux/admin-tableau/admin-tableau.component';
 import { CreateTableauComponent } from './admin/tableaux/creation-tableau/creation-tableau.component';
 import { EditTableauComponent } from './admin/tableaux/edit-tableau/edit-tableau.component';
@@ -40,8 +43,69 @@ import { AdminTexteComponent } from './admin/textes/admin-texte/admin-texte.comp
 import { CreateTexteComponent } from './admin/textes/create-texte/create-texte.component';
 import { EditTexteComponent } from './admin/textes/edit-texte/edit-texte.component';
 import { ShowTexteComponent } from './admin/textes/show-texte/show-texte.component';
+import { NousEcrireComponent } from './admin/nous-ecrire/nous-ecrire.component';
+import { ConfigService } from './services/config.service';
+import { environment } from 'src/environments/environment';
 
+export function ConfigLoader(configService: ConfigService) {
+  //Note: this factory need to return a function (that return a promise)
+  return () => configService.onLoad(environment.configFile);
+}
+// rgpd
+const cookieConfig:NgcCookieConsentConfig = {
+  cookie: {
+    // domain: 'localhost' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+    domain: 'https://galeryofbialy.eu' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+  },
+  position:"bottom-left",
+  palette: {
+    popup: {
+      "background": "#000000",
+      "text": "#ffffff",
+      "link": "#ffffff"
+    },
+    button: {
+      "background": "#f1d600",
+      "text": "#000000",
+      "border": "transparent"
+    }
+  },
+  theme: 'edgeless',
+  type: 'info',
+  layout: 'my-custom-layout',
+  layouts: {
+    "my-custom-layout": '{{messagelink}}{{compliance}}'
+  },
+  // elements:{
+  //   messagelink: `
+  //   <span id="cookieconsent:desc" class="cc-message">{{message}}
+  //     <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{cookiePolicyHref}}" target="_blank">{{cookiePolicyLink}}</a>,
+  //     <a aria-label="learn more about our privacy policy" tabindex="1" class="cc-link" href="{{privacyPolicyHref}}" target="_blank">{{privacyPolicyLink}}</a> and our
+  //     <a aria-label="learn more about our terms of service" tabindex="2" class="cc-link" href="{{tosHref}}" target="_blank">{{tosLink}}</a>
+  //   </span>
+  //   `,
+  // },
+  content:{
+    // "message" : 'En utilisant notre site, vous reconnaissez avoir lu et compris nos  ',
+    "message": "Ce site web utilise des cookies pour vous assurer la meilleure expérience de navigation sur notre site.",
+    "dismiss": "OK, j'ai compris!",
+    "deny": "Refuser",
+    "link": "Plus d'information",
+    "href": "https://cookiesandyou.com",
+    "policy": "Cookie Policy",
+    "header": "Cookies sur le site!",
+    "allow": "Autoriser les cookies",
 
+    cookiePolicyLink: 'Cookie Policy',
+    cookiePolicyHref: 'https://cookie.com',
+
+    privacyPolicyLink: 'Privacy Policy',
+    privacyPolicyHref: 'https://privacy.com',
+
+    tosLink: 'Terms of Service',
+    tosHref: 'https://tos.com',
+  }
+};
 
 @NgModule({
   declarations: [
@@ -62,6 +126,7 @@ import { ShowTexteComponent } from './admin/textes/show-texte/show-texte.compone
     ModalAddToCartComponent,
     ModalQuickViewComponent,
     AdminComponent,
+    NousEcrireComponent,
 
     AdminTableauComponent,
     CreateTableauComponent,
@@ -88,9 +153,17 @@ import { ShowTexteComponent } from './admin/textes/show-texte/show-texte.compone
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    EditorModule
+    EditorModule,
+    NgcCookieConsentModule.forRoot(cookieConfig),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: ConfigLoader,
+      deps: [ConfigService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

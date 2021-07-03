@@ -26,6 +26,7 @@ import { ShowTexteComponent } from './admin/textes/show-texte/show-texte.compone
 import { EditTableauComponent } from './admin/tableaux/edit-tableau/edit-tableau.component';
 import { AdminTableauComponent } from './admin/tableaux/admin-tableau/admin-tableau.component';
 import { CreateTableauComponent } from './admin/tableaux/creation-tableau/creation-tableau.component';
+import { NousEcrireComponent } from './admin/nous-ecrire/nous-ecrire.component';
 
 
 const routes: Routes = [
@@ -47,13 +48,16 @@ const routes: Routes = [
   { path: 'edit-tableaux/:id', component: EditTableauComponent, canActivate: [AuthGuard] },
 
   { path: 'admin-categories', component: AdminCategoriesComponent, canActivate: [AuthGuard] },
-  { path: 'edit-categories/:id', component: EditCategorieComponent, canActivate: [AuthGuard] },
+  { path: 'edit-categorie/:id', component: EditCategorieComponent, canActivate: [AuthGuard] },
   { path: 'create-categories', component: CreateCategorieComponent, canActivate: [AuthGuard] },
 
   { path: 'admin-textes', component: AdminTexteComponent, canActivate: [AuthGuard] },
   { path: 'edit-texte/:id', component: EditTexteComponent, canActivate: [AuthGuard] },
   { path: 'create-texte', component: CreateTexteComponent, canActivate: [AuthGuard] },
   { path: 'show-texte', component: ShowTexteComponent, canActivate: [AuthGuard] },
+
+  { path: 'nousEcrire', component: NousEcrireComponent },
+
 
 
   // Paiement

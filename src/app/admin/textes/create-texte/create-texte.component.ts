@@ -40,7 +40,6 @@ export class CreateTexteComponent implements OnInit {
               if (other) {
                 this.router.navigate(['/admin-categories']);
               } else {
-                // this.router.navigate(['/create-categories']);
               }
             }, 1000);
         }

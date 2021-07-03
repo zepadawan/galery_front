@@ -52,10 +52,12 @@
               "src/styles.css",
               "node_modules/tinymce/skins/ui/oxide/skin.min.css",
               "node_modules/tinymce/skins/ui/oxide/content.min.css",
-              "node_modules/tinymce/skins/ui/oxide/content.inline.min.css"
+              "node_modules/tinymce/skins/ui/oxide/content.inline.min.css",
+              "node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
             "scripts": [
-              "node_modules/tinymce/tinymce.min.js"
+              "node_modules/tinymce/tinymce.min.js",
+              "node_modules/cookieconsent/build/cookieconsent.min.js"
             ]
           },
           "configurations": {
