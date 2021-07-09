@@ -24,6 +24,21 @@ import { AdminComponent } from './admin/admin.component';
 import { EditCategorieComponent } from './admin/categories/edit-categorie/edit-categorie.component';
 import { ShopComponent } from './components/shop/shop.component';
 
+// Material
+// import { MatInputModule } from '@angular/material/input';
+// import { MatButtonModule } from '@angular/material/button';
+// import {MatIconModule} from '@angular/material/icon';
+// import { MatCardModule } from '@angular/material/card';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatDialogModule } from '@angular/material/dialog';
+// import { MatGridListModule } from '@angular/material/grid-list';
+// import { MatNativeDateModule,  MAT_DATE_LOCALE } from '@angular/material/core';
+// import { MAT_DATE_FORMATS } from '@angular/material/core';
+// // import { MY_DATE_FORMAT } from './models/my-date-format';
+// import { MatDatepickerModule,  } from '@angular/material/datepicker';
+// import { MomentDateModule } from '@angular/material-moment-adapter';
+// import {MatRadioModule} from '@angular/material/radio';
+
 // tinymce
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { MyEditorComponent } from './admin/myeditor/myeditor.component';
@@ -46,6 +61,7 @@ import { ShowTexteComponent } from './admin/textes/show-texte/show-texte.compone
 import { NousEcrireComponent } from './admin/nous-ecrire/nous-ecrire.component';
 import { ConfigService } from './services/config.service';
 import { environment } from 'src/environments/environment';
+import { ConfirmationDialogComponent } from './admin/confirmation-dialog/confirmation-dialog.component';
 
 export function ConfigLoader(configService: ConfigService) {
   //Note: this factory need to return a function (that return a promise)
@@ -143,6 +159,7 @@ const cookieConfig:NgcCookieConsentConfig = {
     ShowTexteComponent,
 
     MyEditorComponent,
+     ConfirmationDialogComponent,
 
 
   ],
@@ -154,6 +171,21 @@ const cookieConfig:NgcCookieConsentConfig = {
     ReactiveFormsModule,
     FormsModule,
     EditorModule,
+
+    // Material
+    // MatInputModule,
+    // MatButtonModule,
+    // MatCardModule,
+    // MatIconModule,
+    // MatFormFieldModule,
+    // MatDialogModule,
+    // MatGridListModule,
+    // MatNativeDateModule,
+    // MatDatepickerModule,
+    // MomentDateModule,
+    // MatRadioModule,
+
+
     NgcCookieConsentModule.forRoot(cookieConfig),
   ],
   providers: [
